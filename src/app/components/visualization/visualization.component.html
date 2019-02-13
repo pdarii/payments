@@ -1,0 +1,28 @@
+<form class="form-inline">
+  <label class="sr-only" for="inlineFormCustomSelect">Preference</label>
+  <select
+    class="custom-select mb-2 mr-sm-2"
+    [(ngModel)]="value"
+    (change)="redrawVisualization()"
+    [ngModelOptions]="{ standalone: true }"
+    id="inlineFormCustomSelect"
+  >
+    <option *ngFor="let val of values" [value]="val.value">
+      {{ val.title }}
+    </option>
+  </select>
+</form>
+
+<ngx-charts-bar-vertical
+  *ngIf="visualizationData.length"
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="visualizationData"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  (select)="onSelect($event)"
+  [legendTitle]="legendTitle"
+  [legend]="legend"
+>
+</ngx-charts-bar-vertical>
